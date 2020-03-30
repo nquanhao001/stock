@@ -23,7 +23,7 @@ public class StockService implements InitializingBean {
         try {
             batchReduceThread.addNum(num);
             synchronized (batchReduceThread){
-                batchReduceThread.wait(20);
+                batchReduceThread.wait(50);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -27,7 +27,7 @@ public class BatchReduceThread extends Thread {
     public void run() {
         System.out.println("线程开始启动了");
         while (true){
-            if (System.currentTimeMillis() - beginTime > 50 && totalNum > 0){
+            if (System.currentTimeMillis() - beginTime > 20 && totalNum > 0){
                 beginTime = System.currentTimeMillis();
                 int toReduceNum = totalNum;
                 stockDAO.reduceStock(toReduceNum);
