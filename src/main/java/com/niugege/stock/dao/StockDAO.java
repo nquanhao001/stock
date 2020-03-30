@@ -19,7 +19,6 @@ public class StockDAO {
             try {
                 if (initStock < num){
                     System.out.println("库存被扣完了，当前时间为:" + new Date());
-
                     System.exit(1);
                     return false;
                 }
@@ -30,7 +29,6 @@ public class StockDAO {
                 e.printStackTrace();
             }
         }
-
         return true;
     }
 }
