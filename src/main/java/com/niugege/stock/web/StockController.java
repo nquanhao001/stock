@@ -19,9 +19,14 @@ public class StockController {
 
     @RequestMapping("/reduce")
     public String reduce(){
-        /*boolean success = stockDAO.reduceStock( 20);
-        return success ? "ok" : "失败";*/
+
         boolean success = stockService.reduce(20);
+        return success ? "ok" : "失败";
+    }
+
+    @RequestMapping("/reduceNormal")
+    public String reduceNormal(){
+        boolean success = stockDAO.reduceStock( 20);
         return success ? "ok" : "失败";
     }
 

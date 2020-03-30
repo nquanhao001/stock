@@ -13,6 +13,7 @@ public class StockDAO {
     private Long lockObject = 22222222L;
 
     public boolean reduceStock( Integer num){
+        System.out.println("开始数据库操作了");
         //模拟对一个sku进行库存扣减时间，数据库会加上行锁
         synchronized (lockObject){
             try {

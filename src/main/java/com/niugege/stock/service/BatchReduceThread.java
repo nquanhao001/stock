@@ -4,9 +4,9 @@ import com.niugege.stock.dao.StockDAO;
 
 public class BatchReduceThread extends Thread {
 
-    private Long beginTime ;
+    private volatile Long beginTime ;
 
-    private Integer totalNum;
+    private volatile Integer totalNum;
 
     private StockDAO stockDAO;
 
@@ -25,11 +25,19 @@ public class BatchReduceThread extends Thread {
 
     @Override
     public void run() {
-        while (System.currentTimeMillis() - beginTime > 20 && totalNum > 0){
-            beginTime = null;
-            stockDAO.reduceStock(totalNum);
-            this.notifyAll();
+        System.out.println("线程开始启动了");
+        while (true){
+            if (System.currentTimeMillis() - beginTime > 50 && totalNum > 0){
+                beginTime = System.currentTimeMillis();
+                int toReduceNum = totalNum;
+                stockDAO.reduceStock(toReduceNum);
+                totalNum = totalNum - toReduceNum;
+                synchronized (this){
+                    this.notifyAll();
+                }
+            }
         }
+
     }
 
     public Long getBeginTime() {
